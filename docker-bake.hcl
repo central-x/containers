@@ -22,11 +22,11 @@ target "_platforms" {
 # https://www.azul.com
 ############################################################################
 variable "OPENJDK_VERSION" {
-    default = "17.0.9"
+    default = "21.0.1"
 }
 
 variable "OPENJDK_SHORT_VERSION" {
-    default = "17"
+    default = "21"
 }
 
 target "openjdk" {
@@ -37,8 +37,8 @@ target "openjdk" {
         OPENJDK_SHORT_VERSION = "${OPENJDK_SHORT_VERSION}"
         OPENJDK_VERSION = "${OPENJDK_VERSION}"
 
-        AMD64_PACKAGE = "https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_musl_x64.tar.gz"
-        ARM64_PACKAGE = "https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_musl_aarch64.tar.gz"
+        AMD64_PACKAGE = "https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_musl_x64.tar.gz"
+        ARM64_PACKAGE = "https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_musl_aarch64.tar.gz"
     }
     tags = [
         "docker.io/centralx/openjdk:latest",
