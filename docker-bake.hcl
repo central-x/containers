@@ -22,11 +22,11 @@ target "_platforms" {
 # https://www.azul.com
 ############################################################################
 variable "OPENJDK_VERSION" {
-    default = "8.0.392"
+    default = "11.0.21"
 }
 
 variable "OPENJDK_SHORT_VERSION" {
-    default = "8"
+    default = "11"
 }
 
 target "openjdk" {
@@ -37,8 +37,8 @@ target "openjdk" {
         OPENJDK_SHORT_VERSION = "${OPENJDK_SHORT_VERSION}"
         OPENJDK_VERSION = "${OPENJDK_VERSION}"
 
-        AMD64_PACKAGE = "https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_musl_x64.tar.gz"
-        ARM64_PACKAGE = "https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_musl_aarch64.tar.gz"
+        AMD64_PACKAGE = "https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_musl_x64.tar.gz"
+        ARM64_PACKAGE = "https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_musl_aarch64.tar.gz"
     }
     tags = [
         "docker.io/centralx/openjdk:latest",
