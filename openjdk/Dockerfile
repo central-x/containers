@@ -9,16 +9,16 @@ ARG ARM64_PACKAGE
 WORKDIR /workspace
 
 # amd64 package
-ADD https://cdn.azul.com/zulu/bin/$AMD64_PACKAGE.tar.gz ./linux/amd64/jdk.tar.gz
+ADD $AMD64_PACKAGE ./linux/amd64/jdk.tar.gz
 RUN tar -zxvf ./linux/amd64/jdk.tar.gz -C ./linux/amd64 && \
     mkdir -p ./linux/amd64/jdk && \
-    mv ./linux/amd64/$AMD64_PACKAGE/* ./linux/amd64/jdk
+    mv ./linux/amd64/*/* ./linux/amd64/jdk
 
 # arm64 package
-ADD https://cdn.azul.com/zulu/bin/$ARM64_PACKAGE.tar.gz ./linux/arm64/jdk.tar.gz
+ADD $ARM64_PACKAGE ./linux/arm64/jdk.tar.gz
 RUN tar -zxvf ./linux/arm64/jdk.tar.gz -C ./linux/arm64 && \
     mkdir -p ./linux/arm64/jdk && \
-    mv ./linux/arm64/$ARM64_PACKAGE/* ./linux/arm64/jdk
+    mv ./linux/arm64/*/* ./linux/arm64/jdk
 
 ########################################################
 # Stage 2
