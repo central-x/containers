@@ -1,0 +1,204 @@
+#################################################################
+# Azul Zulu OpenJDK
+# https://www.azul.com
+name: Build and push OpenJDK images
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  #################################################################
+  # OpenJDK 8
+  openjdk8:
+    name: Build and push OpenJDK 8 images
+    runs-on: ubuntu-latest
+    env:
+      OPENJDK_FULL_VERSION: 8.0.392
+      OPENJDK_SHORT_VERSION: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up Docker(QEMU)
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker(Buildx)
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver-opts: image=moby/buildkit:master
+          platforms: linux/amd64,linux/arm64
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and push OpenJDK 8(Alpine)
+        uses: docker/bake-action@v4
+        with:
+          targets: openjdk-alpine
+          workdir: ./openjdk
+          push: true
+        env:
+          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_musl_x64.tar.gz
+          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_musl_aarch64.tar.gz
+      - name: Test image OpenJDK 8(Alpine)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-alpine java -version
+
+      - name: Build and push OpenJDK 8(Ubuntu)
+        uses: docker/bake-action@v4
+        with:
+          targets: openjdk-ubuntu
+          workdir: ./openjdk
+          push: true
+        env:
+          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_x64.tar.gz
+          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_aarch64.tar.gz
+      - name: Test image OpenJDK 8(Ubuntu)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-ubuntu java -version
+
+  #################################################################
+  # OpenJDK 11
+  openjdk11:
+    name: Build and push OpenJDK 11 images
+    runs-on: ubuntu-latest
+    env:
+      OPENJDK_FULL_VERSION: 11.0.21
+      OPENJDK_SHORT_VERSION: 11
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up Docker(QEMU)
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker(Buildx)
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver-opts: image=moby/buildkit:master
+          platforms: linux/amd64,linux/arm64
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and push OpenJDK 11(Alpine)
+        uses: docker/bake-action@v4
+        with:
+          targets: openjdk-alpine
+          workdir: ./openjdk
+          push: true
+        env:
+          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_musl_x64.tar.gz
+          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_musl_aarch64.tar.gz
+      - name: Test image OpenJDK 11(Alpine)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-alpine java -version
+      - name: Build and push OpenJDK 11(Ubuntu)
+        uses: docker/bake-action@v4
+        with:
+          targets: openjdk-ubuntu
+          workdir: ./openjdk
+          push: true
+        env:
+          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_x64.tar.gz
+          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_aarch64.tar.gz
+      - name: Test image OpenJDK 11(Ubuntu)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-ubuntu java -version
+
+  #################################################################
+  # OpenJDK 17
+  openjdk17:
+    name: Build and push OpenJDK 17 images
+    runs-on: ubuntu-latest
+    env:
+      OPENJDK_FULL_VERSION: 17.0.9
+      OPENJDK_SHORT_VERSION: 17
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up Docker(QEMU)
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker(Buildx)
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver-opts: image=moby/buildkit:master
+          platforms: linux/amd64,linux/arm64
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and push OpenJDK 17(Alpine)
+        uses: docker/bake-action@v4
+        with:
+          targets: openjdk-alpine
+          workdir: ./openjdk
+          push: true
+        env:
+          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_musl_x64.tar.gz
+          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_musl_aarch64.tar.gz
+      - name: Test image OpenJDK 17(Alpine)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-alpine java -version
+      - name: Build and push OpenJDK 17(Ubuntu)
+        uses: docker/bake-action@v4
+        with:
+          targets: openjdk-ubuntu
+          workdir: ./openjdk
+          push: true
+        env:
+          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_x64.tar.gz
+          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_aarch64.tar.gz
+      - name: Test image OpenJDK 17(Ubuntu)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-ubuntu java -version
+
+  #################################################################
+  # OpenJDK 21
+  openjdk21:
+    name: Build and push OpenJDK 21 images
+    runs-on: ubuntu-latest
+    env:
+      OPENJDK_FULL_VERSION: 21.0.1
+      OPENJDK_SHORT_VERSION: 21
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up Docker(QEMU)
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker(Buildx)
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver-opts: image=moby/buildkit:master
+          platforms: linux/amd64,linux/arm64
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and push OpenJDK 21(Alpine)
+        uses: docker/bake-action@v4
+        with:
+          targets: openjdk-alpine
+          workdir: ./openjdk
+          push: true
+        env:
+          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_musl_x64.tar.gz
+          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_musl_aarch64.tar.gz
+      - name: Test image OpenJDK 21(Alpine)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-alpine java -version
+      - name: Build and push OpenJDK 21(Ubuntu)
+        uses: docker/bake-action@v4
+        with:
+          targets: openjdk-ubuntu
+          workdir: ./openjdk
+          push: true
+        env:
+          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_x64.tar.gz
+          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_aarch64.tar.gz
+      - name: Test image OpenJDK 21(Ubuntu)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-ubuntu java -version
+

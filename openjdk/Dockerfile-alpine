@@ -26,15 +26,15 @@ RUN tar -zxvf ./linux/arm64/jdk.tar.gz -C ./linux/arm64 && \
 # 设置相关环境变量
 ########################################################
 FROM --platform=$TARGETPLATFORM alpine:3.18.2
-MAINTAINER Alan Yeh "alan@yeh.cn"
+MAINTAINER Alan Yeh <alan@yeh.cn>
 
 ARG TARGETPLATFORM
-ARG OPENJDK_VERSION
+ARG FULL_VERSION
 
 COPY --from=builder /workspace/$TARGETPLATFORM/jdk /usr/local/jdk
 
 ENV JAVA_HOME=/usr/local/jdk
-ENV JAVA_VERSION=$OPENJDK_VERSION
+ENV JAVA_VERSION=$FULL_VERSION
 ENV PATH=/usr/local/jdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENV LANG C.UTF-8
 
