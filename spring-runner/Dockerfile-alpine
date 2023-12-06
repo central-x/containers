@@ -1,0 +1,60 @@
+########################################################
+# Stage 1
+# 获取构建需要用到的安装包
+########################################################
+FROM ubuntu:jammy as builder
+ARG TARGETARCH
+ARG GOSU_VERSION
+
+WORKDIR /workspace
+
+# 下载 gosu
+RUN apt-get update;
+RUN apt-get install -y --no-install-recommends ca-certificates wget;
+RUN wget -O ./gosu "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-${TARGETARCH}";
+
+# 添加 entrypoint.sh
+ADD ./entrypoint-alpine.sh ./entrypoint.sh
+
+########################################################
+# Stage 2
+# 安装时区
+# 复制 gosu 和 entrypoint.sh
+# 创建用户
+# 创建工作目录、挂载点
+# 执行启动脚本
+########################################################
+FROM image
+
+# 安装时区
+ENV TZ=Asia/Shanghai
+RUN apk add --no-cache tzdata curl busybox-extras
+
+# 复制启动可执行文件要用到的辅助工具
+COPY --from=builder   /workspace/gosu            /usr/local/bin/gosu
+COPY --from=builder   /workspace/entrypoint.sh   /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/*
+
+# 添加 runner 分组、runner 用户
+# Alpine 会自动创建同名分组
+RUN adduser runner -D -u 1000
+
+# 工作目录
+WORKDIR /workspace
+# 创建数据卷挂载目录
+RUN mkdir /workspace/config && mkdir /workspace/logs && mkdir /workspace/data
+
+# 应用配置目录: /workspace/config
+# 应用日志目录: /workspace/logs
+# 应用数据目录: /workspace/data
+VOLUME ["/workspace/config", "/workspace/logs", "/workspace/data"]
+
+# 暴露端口
+EXPOSE 80
+
+# 启动脚本
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+# JVM 调优参数
+# 默认最小内存 256m，最大内存 256m
+CMD ["-Xms256m", "-Xmx256m"]

@@ -1,7 +1,7 @@
 #################################################################
 # Azul Zulu OpenJDK
 # https://www.azul.com
-name: Build and push OpenJDK images
+name: Release OpenJDK images
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
   #################################################################
   # OpenJDK 8
   openjdk8:
-    name: Build and push OpenJDK 8 images
+    name: Release OpenJDK 8 images
     runs-on: ubuntu-latest
     env:
       OPENJDK_FULL_VERSION: 8.0.392
@@ -35,7 +35,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       #============================ Alpine ============================
-      - name: Build and push OpenJDK 8(Alpine)
+      - name: Release OpenJDK 8(Alpine)
         uses: docker/bake-action@v4
         with:
           targets: openjdk-alpine
@@ -47,7 +47,7 @@ jobs:
       - name: Test image OpenJDK 8(Alpine)
         run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-alpine
       #============================ Ubuntu ============================
-      - name: Build and push OpenJDK 8(Ubuntu)
+      - name: Release OpenJDK 8(Ubuntu)
         uses: docker/bake-action@v4
         with:
           targets: openjdk-ubuntu
@@ -62,7 +62,7 @@ jobs:
   #################################################################
   # OpenJDK 11
   openjdk11:
-    name: Build and push OpenJDK 11 images
+    name: Release OpenJDK 11 images
     runs-on: ubuntu-latest
     env:
       OPENJDK_FULL_VERSION: 11.0.21
@@ -85,7 +85,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       #============================ Alpine ============================
-      - name: Build and push OpenJDK 11(Alpine)
+      - name: Release OpenJDK 11(Alpine)
         uses: docker/bake-action@v4
         with:
           targets: openjdk-alpine
@@ -97,7 +97,7 @@ jobs:
       - name: Test image OpenJDK 11(Alpine)
         run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-alpine
       #============================ Ubuntu ============================
-      - name: Build and push OpenJDK 11(Ubuntu)
+      - name: Release OpenJDK 11(Ubuntu)
         uses: docker/bake-action@v4
         with:
           targets: openjdk-ubuntu
@@ -112,7 +112,7 @@ jobs:
   #################################################################
   # OpenJDK 17
   openjdk17:
-    name: Build and push OpenJDK 17 images
+    name: Release OpenJDK 17 images
     runs-on: ubuntu-latest
     env:
       OPENJDK_FULL_VERSION: 17.0.9
@@ -135,7 +135,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       #============================ Alpine ============================
-      - name: Build and push OpenJDK 17(Alpine)
+      - name: Release OpenJDK 17(Alpine)
         uses: docker/bake-action@v4
         with:
           targets: openjdk-alpine
@@ -147,7 +147,7 @@ jobs:
       - name: Test image OpenJDK 17(Alpine)
         run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-alpine
       #============================ Ubuntu ============================
-      - name: Build and push OpenJDK 17(Ubuntu)
+      - name: Release OpenJDK 17(Ubuntu)
         uses: docker/bake-action@v4
         with:
           targets: openjdk-ubuntu
@@ -162,7 +162,7 @@ jobs:
   #################################################################
   # OpenJDK 21
   openjdk21:
-    name: Build and push OpenJDK 21 images
+    name: Release OpenJDK 21 images
     runs-on: ubuntu-latest
     env:
       OPENJDK_FULL_VERSION: 21.0.1
@@ -185,7 +185,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       #============================ Alpine ============================
-      - name: Build and push OpenJDK 21(Alpine)
+      - name: Release OpenJDK 21(Alpine)
         uses: docker/bake-action@v4
         with:
           targets: openjdk-alpine
@@ -197,7 +197,7 @@ jobs:
       - name: Test image OpenJDK 21(Alpine)
         run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-alpine
       #============================ Ubuntu ============================
-      - name: Build and push OpenJDK 21(Ubuntu)
+      - name: Release OpenJDK 21(Ubuntu)
         uses: docker/bake-action@v4
         with:
           targets: openjdk-ubuntu
