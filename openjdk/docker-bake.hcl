@@ -75,10 +75,9 @@ target "openjdk-ubuntu" {
         ARM64_PACKAGE = "${OPENJDK_ARM64_PACKAGE}"
     }
     tags = [
-        "docker.io/centralx/openjdk:latest",
         "docker.io/centralx/openjdk:${OPENJDK_SHORT_VERSION}",
-        "docker.io/centralx/openjdk:${OPENJDK_SHORT_VERSION}-ubuntu",
         "docker.io/centralx/openjdk:${OPENJDK_FULL_VERSION}",
+        "docker.io/centralx/openjdk:${OPENJDK_SHORT_VERSION}-ubuntu",
         "docker.io/centralx/openjdk:${OPENJDK_FULL_VERSION}-ubuntu"
     ]
 }
