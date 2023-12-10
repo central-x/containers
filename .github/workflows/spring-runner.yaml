@@ -36,13 +36,17 @@ jobs:
       - name: Build and push Spring Runner(Alpine)
         uses: docker/bake-action@v4
         with:
-          targets: spring-runner-alpine
+          targets: |
+            spring-runner-jdk-alpine
+            spring-runner-jre-alpine
           workdir: ./spring-runner
           push: true
       #============================ Ubuntu ============================
       - name: Build and push Spring Runner(Ubuntu)
         uses: docker/bake-action@v4
         with:
-          targets: spring-runner-ubuntu
+          targets: |
+            spring-runner-jdk-ubuntu
+            spring-runner-jre-ubuntu
           workdir: ./spring-runner
           push: true

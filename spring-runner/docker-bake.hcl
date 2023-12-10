@@ -8,8 +8,10 @@
 #***************************************************************************
 group "default" {
     targets = [
-        "spring-runner-ubuntu",
-        "spring-runner-alpine"
+        "spring-runner-jdk-ubuntu",
+        "spring-runner-jre-ubuntu",
+        "spring-runner-jdk-alpine",
+        "spring-runner-jre-alpine"
     ]
 }
 
@@ -42,14 +44,13 @@ variable "GOSU_VERSION" {
 #***************************************************************************
 # Targets
 #***************************************************************************
-target "spring-runner-ubuntu" {
-    name = "spring-runner-ubuntu-${OPENJDK_VERSION}-${DIST}"
+target "spring-runner-jdk-ubuntu" {
+    name = "spring-runner-${replace(OPENJDK_VERSION, ".", "-")}-jdk-ubuntu"
     matrix = {
-        OPENJDK_VERSION = ["8", "11", "17", "21"]
-        DIST = ["jdk", "jre"]
+        OPENJDK_VERSION = ["8", "8.0.392", "11", "11.0.21", "17", "17.0.9", "21", "21.0.1"]
     }
     contexts = {
-        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-${DIST}-ubuntu"
+        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-jdk-ubuntu"
     }
     inherits = ["_platforms", "_labels"]
     dockerfile = "Dockerfile-ubuntu"
@@ -60,19 +61,42 @@ target "spring-runner-ubuntu" {
         GOSU_VERSION  = "${GOSU_VERSION}"
     }
     tags = [
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-${DIST}",
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-${DIST}-ubuntu",
+        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}",
+        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-jdk",
+        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-ubuntu",
+        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-jdk-ubuntu",
     ]
 }
 
-target "spring-runner-alpine" {
-    name = "spring-runner-alpine-${OPENJDK_VERSION}-${DIST}"
+target "spring-runner-jre-ubuntu" {
+    name = "spring-runner-${replace(OPENJDK_VERSION, ".", "-")}-jre-ubuntu"
     matrix = {
-        OPENJDK_VERSION = ["8", "11", "17", "21"]
-        DIST = ["jdk", "jre"]
+        OPENJDK_VERSION = ["8", "8.0.392", "11", "11.0.21", "17", "17.0.9", "21", "21.0.1"]
     }
     contexts = {
-        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-${DIST}-alpine"
+        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-jre-ubuntu"
+    }
+    inherits = ["_platforms", "_labels"]
+    dockerfile = "Dockerfile-ubuntu"
+    labels = {
+        "org.opencontainers.image.version" = "${OPENJDK_VERSION}"
+    }
+    args = {
+        GOSU_VERSION  = "${GOSU_VERSION}"
+    }
+    tags = [
+        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-jre",
+        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-jre-ubuntu",
+    ]
+}
+
+target "spring-runner-jdk-alpine" {
+    name = "spring-runner-${replace(OPENJDK_VERSION, ".", "-")}-jdk-alpine"
+    matrix = {
+        OPENJDK_VERSION = ["8", "8.0.392", "11", "11.0.21", "17", "17.0.9", "21", "21.0.1"]
+    }
+    contexts = {
+        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-jdk-alpine"
     }
     labels = {
         "org.opencontainers.image.version" = "${OPENJDK_VERSION}"
@@ -83,6 +107,28 @@ target "spring-runner-alpine" {
         GOSU_VERSION  = "${GOSU_VERSION}"
     }
     tags = [
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-${DIST}-alpine",
+        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-alpine",
+        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-jdk-alpine",
+    ]
+}
+
+target "spring-runner-jre-alpine" {
+    name = "spring-runner-${replace(OPENJDK_VERSION, ".", "-")}-jre-alpine"
+    matrix = {
+        OPENJDK_VERSION = ["8", "8.0.392", "11", "11.0.21", "17", "17.0.9", "21", "21.0.1"]
+    }
+    contexts = {
+        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-jre-alpine"
+    }
+    labels = {
+        "org.opencontainers.image.version" = "${OPENJDK_VERSION}"
+    }
+    inherits = ["_platforms", "_labels"]
+    dockerfile = "Dockerfile-alpine"
+    args = {
+        GOSU_VERSION  = "${GOSU_VERSION}"
+    }
+    tags = [
+        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-jre-alpine",
     ]
 }
