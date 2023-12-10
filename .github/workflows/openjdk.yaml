@@ -42,10 +42,14 @@ jobs:
           workdir: ./openjdk
           push: true
         env:
-          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_musl_x64.tar.gz
-          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_musl_aarch64.tar.gz
+          OPENJDK_AMD64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_musl_x64.tar.gz
+          OPENJDK_ARM64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_musl_aarch64.tar.gz
+          OPENJDK_AMD64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jre8.0.392-linux_musl_x64.tar.gz
+          OPENJDK_ARM64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jre8.0.392-linux_musl_aarch64.tar.gz
       - name: Test image OpenJDK 8(Alpine)
         run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-alpine
+      - name: Test image OpenJDK 8 JRE(Alpine)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-jre-alpine
       #============================ Ubuntu ============================
       - name: Release OpenJDK 8(Ubuntu)
         uses: docker/bake-action@v4
@@ -54,10 +58,14 @@ jobs:
           workdir: ./openjdk
           push: true
         env:
-          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_x64.tar.gz
-          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_aarch64.tar.gz
+          OPENJDK_AMD64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_x64.tar.gz
+          OPENJDK_ARM64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jdk8.0.392-linux_aarch64.tar.gz
+          OPENJDK_AMD64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jre8.0.392-linux_x64.tar.gz
+          OPENJDK_ARM64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu8.74.0.17-ca-jre8.0.392-linux_aarch64.tar.gz
       - name: Test image OpenJDK 8(Ubuntu)
         run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-ubuntu
+      - name: Test image OpenJDK 8 JRE(Ubuntu)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-jre-ubuntu
 
   #################################################################
   # OpenJDK 11
@@ -92,10 +100,14 @@ jobs:
           workdir: ./openjdk
           push: true
         env:
-          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_musl_x64.tar.gz
-          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_musl_aarch64.tar.gz
+          OPENJDK_AMD64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_musl_x64.tar.gz
+          OPENJDK_ARM64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_musl_aarch64.tar.gz
+          OPENJDK_AMD64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jre11.0.21-linux_musl_x64.tar.gz
+          OPENJDK_ARM64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jre11.0.21-linux_musl_aarch64.tar.gz
       - name: Test image OpenJDK 11(Alpine)
         run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-alpine
+      - name: Test image OpenJDK 11 JRE(Alpine)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-jre-alpine
       #============================ Ubuntu ============================
       - name: Release OpenJDK 11(Ubuntu)
         uses: docker/bake-action@v4
@@ -104,10 +116,14 @@ jobs:
           workdir: ./openjdk
           push: true
         env:
-          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_x64.tar.gz
-          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_aarch64.tar.gz
+          OPENJDK_AMD64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_x64.tar.gz
+          OPENJDK_ARM64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jdk11.0.21-linux_aarch64.tar.gz
+          OPENJDK_AMD64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jre11.0.21-linux_x64.tar.gz
+          OPENJDK_ARM64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu11.68.17-ca-jre11.0.21-linux_aarch64.tar.gz
       - name: Test image OpenJDK 11(Ubuntu)
         run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-ubuntu
+      - name: Test image OpenJDK 11 JRE(Ubuntu)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-jre-ubuntu
 
   #################################################################
   # OpenJDK 17
@@ -142,10 +158,14 @@ jobs:
           workdir: ./openjdk
           push: true
         env:
-          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_musl_x64.tar.gz
-          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_musl_aarch64.tar.gz
+          OPENJDK_AMD64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_musl_x64.tar.gz
+          OPENJDK_ARM64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_musl_aarch64.tar.gz
+          OPENJDK_AMD64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jre17.0.9-linux_musl_x64.tar.gz
+          OPENJDK_ARM64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jre17.0.9-linux_musl_aarch64.tar.gz
       - name: Test image OpenJDK 17(Alpine)
         run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-alpine
+      - name: Test image OpenJDK 17 JRE(Alpine)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-jre-alpine
       #============================ Ubuntu ============================
       - name: Release OpenJDK 17(Ubuntu)
         uses: docker/bake-action@v4
@@ -154,10 +174,14 @@ jobs:
           workdir: ./openjdk
           push: true
         env:
-          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_x64.tar.gz
-          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_aarch64.tar.gz
+          OPENJDK_AMD64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_x64.tar.gz
+          OPENJDK_ARM64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jdk17.0.9-linux_aarch64.tar.gz
+          OPENJDK_AMD64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jre17.0.9-linux_x64.tar.gz
+          OPENJDK_ARM64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu17.46.19-ca-jre17.0.9-linux_aarch64.tar.gz
       - name: Test image OpenJDK 17(Ubuntu)
         run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-ubuntu
+      - name: Test image OpenJDK 17 JRE(Ubuntu)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-jre-ubuntu
 
   #################################################################
   # OpenJDK 21
@@ -192,10 +216,14 @@ jobs:
           workdir: ./openjdk
           push: true
         env:
-          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_musl_x64.tar.gz
-          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_musl_aarch64.tar.gz
+          OPENJDK_AMD64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_musl_x64.tar.gz
+          OPENJDK_ARM64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_musl_aarch64.tar.gz
+          OPENJDK_AMD64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jre21.0.1-linux_musl_x64.tar.gz
+          OPENJDK_ARM64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jre21.0.1-linux_musl_aarch64.tar.gz
       - name: Test image OpenJDK 21(Alpine)
         run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-alpine
+      - name: Test image OpenJDK 21 JRE(Alpine)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-jre-alpine
       #============================ Ubuntu ============================
       - name: Release OpenJDK 21(Ubuntu)
         uses: docker/bake-action@v4
@@ -204,8 +232,12 @@ jobs:
           workdir: ./openjdk
           push: true
         env:
-          OPENJDK_AMD64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_x64.tar.gz
-          OPENJDK_ARM64_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_aarch64.tar.gz
+          OPENJDK_AMD64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_x64.tar.gz
+          OPENJDK_ARM64_JDK_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jdk21.0.1-linux_aarch64.tar.gz
+          OPENJDK_AMD64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jre21.0.1-linux_x64.tar.gz
+          OPENJDK_ARM64_JRE_PACKAGE: https://cdn.azul.com/zulu/bin/zulu21.30.15-ca-jre21.0.1-linux_aarch64.tar.gz
       - name: Test image OpenJDK 21(Ubuntu)
         run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-ubuntu
+      - name: Test image OpenJDK 21 JRE(Ubuntu)
+        run: docker run --rm centralx/openjdk:$OPENJDK_FULL_VERSION-jre-ubuntu
 
