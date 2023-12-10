@@ -43,12 +43,13 @@ variable "GOSU_VERSION" {
 # Targets
 #***************************************************************************
 target "spring-runner-ubuntu" {
-    name = "spring-runner-ubuntu-${OPENJDK_VERSION}"
+    name = "spring-runner-ubuntu-${OPENJDK_VERSION}-${DIST}"
     matrix = {
         OPENJDK_VERSION = ["8", "11", "17", "21"]
+        DIST = ["jdk", "jre"]
     }
     contexts = {
-        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-ubuntu"
+        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-${DIST}-ubuntu"
     }
     inherits = ["_platforms", "_labels"]
     dockerfile = "Dockerfile-ubuntu"
@@ -59,18 +60,19 @@ target "spring-runner-ubuntu" {
         GOSU_VERSION  = "${GOSU_VERSION}"
     }
     tags = [
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}",
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-ubuntu",
+        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-${DIST}",
+        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-${DIST}-ubuntu",
     ]
 }
 
 target "spring-runner-alpine" {
-    name = "spring-runner-alpine-${OPENJDK_VERSION}"
+    name = "spring-runner-alpine-${OPENJDK_VERSION}-${DIST}"
     matrix = {
         OPENJDK_VERSION = ["8", "11", "17", "21"]
+        DIST = ["jdk", "jre"]
     }
     contexts = {
-        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-alpine"
+        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-${DIST}-alpine"
     }
     labels = {
         "org.opencontainers.image.version" = "${OPENJDK_VERSION}"
@@ -81,6 +83,6 @@ target "spring-runner-alpine" {
         GOSU_VERSION  = "${GOSU_VERSION}"
     }
     tags = [
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-alpine",
+        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-${DIST}-alpine",
     ]
 }
