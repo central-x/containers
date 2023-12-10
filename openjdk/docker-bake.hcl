@@ -103,9 +103,13 @@ target "openjdk-jdk-ubuntu" {
     }
     tags = [
         "docker.io/centralx/openjdk:${OPENJDK_SHORT_VERSION}",
+        "docker.io/centralx/openjdk:${OPENJDK_SHORT_VERSION}-jdk",
         "docker.io/centralx/openjdk:${OPENJDK_FULL_VERSION}",
+        "docker.io/centralx/openjdk:${OPENJDK_FULL_VERSION}-jdk",
         "docker.io/centralx/openjdk:${OPENJDK_SHORT_VERSION}-ubuntu",
-        "docker.io/centralx/openjdk:${OPENJDK_FULL_VERSION}-ubuntu"
+        "docker.io/centralx/openjdk:${OPENJDK_SHORT_VERSION}-jdk-ubuntu",
+        "docker.io/centralx/openjdk:${OPENJDK_FULL_VERSION}-ubuntu",
+        "docker.io/centralx/openjdk:${OPENJDK_FULL_VERSION}-jdk-ubuntu"
     ]
 }
 
@@ -153,7 +157,9 @@ target "openjdk-jdk-alpine" {
     }
     tags = [
         "docker.io/centralx/openjdk:${OPENJDK_SHORT_VERSION}-alpine",
-        "docker.io/centralx/openjdk:${OPENJDK_FULL_VERSION}-alpine"
+        "docker.io/centralx/openjdk:${OPENJDK_SHORT_VERSION}-jdk-alpine",
+        "docker.io/centralx/openjdk:${OPENJDK_FULL_VERSION}-alpine",
+        "docker.io/centralx/openjdk:${OPENJDK_FULL_VERSION}-jdk-alpine"
     ]
 }
 
