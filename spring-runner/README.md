@@ -1,6 +1,6 @@
 # Spring Runner
-## 简介
-&emsp;&emsp;本镜用主要用于运行基于 Spring Boot 的可执行程序。
+## 概述
+&emsp;&emsp;本镜像主要用于运行基于 Spring Boot 的可执行程序。
 
 ## 版本说明
 ### JDK
