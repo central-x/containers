@@ -1,6 +1,8 @@
 # Resources Installer
 ## 概述
-&emsp;&emsp;本镜像主要用于在 Pod 启动时向指定路径复制资源，从而让资源可以独立更新。
+&emsp;&emsp;本镜像主要功能是通过向目标镜像的指定路径复制资源的方式添加额外的功能。本镜像常用于 Kubernetes 集群 Pod 的 Init Containers 功能。
+
+&emsp;&emsp;使用本镜像可以将这些外部资源进行版本化管理，让资源可以独立更新。
 
 &emsp;&emsp;一部份资源在安装之后，需要执行脚本才能生效时，可以配合 Pod 的 LifeCycle[[链接](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#LifecycleHandler)]完成。
 

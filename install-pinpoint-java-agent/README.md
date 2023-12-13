@@ -1,6 +1,6 @@
 # Install Pinpoint Java Agent
 ## 概述
-&emsp;&emsp;本镜像是基于 Resources Installer 镜像[[链接](https://hub.docker.com/r/centralx/resources-installer)]为基础构建而成，本镜像的主要功能是向 `/opt/java/agents` 目录安装 `pinpoint-agent` 插件[[文档](https://pinpoint-apm.gitbook.io/pinpoint/getting-started/quickstart)]。镜像执行完毕后，会生成以下目录结构：
+&emsp;&emsp;本镜像是基于 Resources Installer 镜像[[链接](https://hub.docker.com/r/centralx/resources-installer)]为基础构建而成，本镜像的主要功能是向 `/opt/java/agents` 目录安装 `pinpoint-agent` 插件[[文档](https://pinpoint-apm.gitbook.io/pinpoint/getting-started/quickstart)]需要的相关程序文件。镜像执行完毕后，会生成以下目录结构：
 
 ```text
 /opt/java/agents
@@ -9,6 +9,8 @@
       ├── pinpoint-bootstrap-2.5.3.jar       # Pinpoint agent 插件
       └── ...                                # 其它文件
 ```
+
+&emsp;&emsp;本镜像的主要作为是在目标镜像运行前向其添加 Pinpoint java agent 插件，这个功能主要用在 Kubernetes 集群的 Pod Init Containers 中。
 
 ## 使用说明
 ### 修改 Pod
