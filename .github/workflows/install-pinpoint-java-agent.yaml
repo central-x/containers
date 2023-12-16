@@ -1,7 +1,7 @@
 #################################################################
 # Install Pinpoint Java Agent
 # https://central-x.com
-name: Release Install Pinpoint Java Agent images
+name: Release Install Pinpoint Java Agent Images
 
 on:
   push:
@@ -10,9 +10,9 @@ on:
 
 jobs:
   #################################################################
-  # Resources Installer
+  # Install Pinpoint Java Agent
   openjdk8:
-    name: Release Install Pinpoint Java Agent images
+    name: Release Install Pinpoint Java Agent Images
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,8 +31,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build and push Resources Installer
+      - name: Build and push install-pinpoint-java-agent images
         uses: docker/bake-action@v4
         with:
           targets: install-pinpoint-java-agent

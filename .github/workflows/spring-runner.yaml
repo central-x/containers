@@ -1,7 +1,7 @@
 #################################################################
 # Spring Boot Application Runner
 # https://spring.io
-name: Release Spring Runner images
+name: Release Spring Runner Images
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
   #################################################################
   # Spring Runner
   openjdk8:
-    name: Release Spring Runner images
+    name: Release Spring Runner Images
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,7 +33,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       #============================ Alpine ============================
-      - name: Build and push Spring Runner(Alpine)
+      - name: Build and push spring-runner-alpine images
         uses: docker/bake-action@v4
         with:
           targets: |
@@ -42,7 +42,7 @@ jobs:
           workdir: ./spring-runner
           push: true
       #============================ Ubuntu ============================
-      - name: Build and push Spring Runner(Ubuntu)
+      - name: Build and push spring-runner-ubuntu images
         uses: docker/bake-action@v4
         with:
           targets: |
