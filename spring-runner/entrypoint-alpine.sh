@@ -20,7 +20,7 @@ fi
 # Grant Permissions
 #===========================================================================================
 set +o errexit
-find . \! -user runner -exec chown runner '{}' +
+find . \! -user runner -exec chown runner:runner '{}' +
 set -o errexit
 
 #===========================================================================================
@@ -36,9 +36,4 @@ SPRING_OPTS="-Dspring.config.additional-location=optional:./config/"
 #===========================================================================================
 # Run Application
 #===========================================================================================
-EXECUTABLE="application.jar"
-if [ -n "$RUNNER_EXECUTABLE" ]; then
-    EXECUTABLE="$RUNNER_EXECUTABLE"
-fi
-
-exec gosu runner java "$JAVA_OPTS" "$SPRING_OPTS" "$@" -jar "$EXECUTABLE"
+exec gosu runner java "$JAVA_OPTS" "$SPRING_OPTS" "$@" -jar "$RUNNER_EXECUTABLE"

@@ -36,8 +36,17 @@ COPY --from=builder   /workspace/entrypoint.sh   /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/*
 
 # 添加 runner 分组、runner 用户
-# Alpine 会自动创建同名分组
-RUN adduser runner -D -u 1000
+# addgroup
+# -S: 创建系统组
+# -g: 指定用户组 GID
+# adduser
+# -S: 创建系统用户
+# -h: 创建用户主目录
+# -G: 指定用户所属组
+# -u: 指定用户 UID
+RUN set -eux; \
+    addgroup -S -g 1000 runner; \
+    adduser -S -h /home/runner -G runner -u 1000 runner
 
 # 工作目录
 WORKDIR /workspace
@@ -51,6 +60,9 @@ VOLUME ["/workspace/config", "/workspace/logs", "/workspace/data"]
 
 # 暴露端口
 EXPOSE 80
+
+# 可执行文件名
+ENV RUNNER_EXECUTABLE application.jar
 
 # 启动脚本
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

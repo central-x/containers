@@ -38,7 +38,15 @@ COPY --from=builder   /workspace/entrypoint.sh   /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/*
 
 # 添加 runner 分组、runner 用户
-RUN groupadd -r -g 1000 runner && useradd -r -g runner -u 1000 runner
+# groupadd
+# -r: 创建系统组
+# -g: 指定用户组 GID
+# useradd
+# -r: 创建系统用户
+# -m, --create-home: 创建用户主目录，默认是 /home/<user>
+# -g: 指定用户所属组
+# -u: 指定用户 UID
+RUN groupadd -r -g 1000 runner && useradd -r -m -g runner -u 1000 runner
 
 # 工作目录
 WORKDIR /workspace
@@ -52,6 +60,9 @@ VOLUME ["/workspace/config", "/workspace/logs", "/workspace/data"]
 
 # 暴露端口
 EXPOSE 80
+
+# 可执行文件名
+ENV RUNNER_EXECUTABLE application.jar
 
 # 启动脚本
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
