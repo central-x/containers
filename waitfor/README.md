@@ -93,3 +93,27 @@ spec:
     - name: spring-application-runner
       image: application:latest
 ```
+
+### 等待指定端口（Since 1.1.0）
+&emsp;&emsp;等待指定服务器的指定端口开放。
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: runner
+spec:
+  initContainers:
+    # 等待 mysql 容器的 3306 端口活动后启动 spring-application-runner 容器
+    # 注意，这里只解析通过 netcat 测试端口是否监听，不监听应用是否正常工作
+    - name: waitfor
+      image: "centralx/waitfor:latest"
+      imagePullPolicy: Always
+      args:
+        - "tcp" # 使用指定协议连接，可选用 tcp 或 udp
+        - "mysql"
+        - "3306"
+  containers:
+    - name: spring-application-runner
+      image: application:latest
+```
