@@ -79,9 +79,9 @@ case "$1" in
         done
         exit 0
     ;;
-    service)
+    lookup)
         echo -e "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ \033[35m$(date +"%Y-%m-%d %H:%M:%S")\033[0m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-        echo "┃ Wait for service '$2'"
+        echo "┃ Wait for lookup '$2'"
         echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
         while [ 1 ]; do
             # 执行命令
@@ -97,7 +97,7 @@ case "$1" in
             for line in $output; do
                 echo "┃ $line"
             done
-            echo ""
+            echo "┃"
 
             # 检查返回的状态码
             if [ "$status" == "0" ]; then
@@ -112,9 +112,9 @@ case "$1" in
         done
         exit 0
     ;;
-    api)
+    get)
         echo -e "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ \033[35m$(date +"%Y-%m-%d %H:%M:%S")\033[0m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-        echo "┃ Wait for api 'GET $2'"
+        echo "┃ Wait for 'GET $2'"
         echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
         while [ 1 ]; do
             # 发送 curl 请求，设置超时时间为 5 秒
@@ -126,7 +126,7 @@ case "$1" in
             echo ""
             echo -e "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ \033[35m$(date +"%Y-%m-%d %H:%M:%S")\033[0m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
             echo "┃ \$ curl -s -m 5 -o /dev/null -w %{http_code} $2"
-            echo ""
+            echo "┃"
 
             # 检查返回的状态码
             if [ "$response" == "200" ]; then
@@ -167,7 +167,7 @@ case "$1" in
             for line in $output; do
                 echo "┃ $line"
             done
-            echo ""
+            echo "┃"
 
             # 检查返回的状态码
             if [ "$status" == "0" ]; then
