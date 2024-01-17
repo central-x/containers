@@ -11,7 +11,7 @@ on:
 jobs:
   #################################################################
   # Install Pinpoint Java Agent
-  openjdk8:
+  release:
     name: Release Install Pinpoint Java Agent Images
     runs-on: ubuntu-latest
     steps:

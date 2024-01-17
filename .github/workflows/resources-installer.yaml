@@ -11,7 +11,7 @@ on:
 jobs:
   #################################################################
   # Resources Installer
-  openjdk8:
+  release:
     name: Release Resources Installer Images
     runs-on: ubuntu-latest
     steps:

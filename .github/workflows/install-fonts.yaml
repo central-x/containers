@@ -11,7 +11,7 @@ on:
 jobs:
   #################################################################
   # Install Fonts
-  openjdk8:
+  release:
     name: Release Install Fonts Images
     runs-on: ubuntu-latest
     steps:

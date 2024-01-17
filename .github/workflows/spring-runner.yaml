@@ -11,7 +11,7 @@ on:
 jobs:
   #################################################################
   # Spring Runner
-  openjdk8:
+  release:
     name: Release Spring Runner Images
     runs-on: ubuntu-latest
     steps:

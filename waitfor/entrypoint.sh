@@ -33,8 +33,7 @@ case "$1" in
         echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
         exit 0
     ;;
-    tcp);;
-    udp)
+    tcp|udp)
         protocol=$(echo $1 | tr '[:lower:]' '[:upper:]')
         if [ "$1" == "UDP" ]; then
             protocol="UDP"
@@ -94,9 +93,7 @@ case "$1" in
             echo ""
             echo -e "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ \033[35m$(date +"%Y-%m-%d %H:%M:%S")\033[0m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
             echo "┃ \$ nslookup $2"
-            for line in $output; do
-                echo "┃ $line"
-            done
+            echo "$output" | awk -v prefix="┃ " '{print prefix $0}'
             echo "┃"
 
             # 检查返回的状态码
@@ -133,7 +130,7 @@ case "$1" in
                 echo "┃ ✅ Response Status: 200"
                 echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                 exit 0
-            elif [ "$response" == "0" ]; then
+            elif [ "$response" == "000" ]; then
                 echo "┃ ❌ Response Timeout"
                 echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                 sleep 2
@@ -164,9 +161,7 @@ case "$1" in
             echo ""
             echo -e "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ \033[35m$(date +"%Y-%m-%d %H:%M:%S")\033[0m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
             echo "┃ \$ $@"
-            for line in $output; do
-                echo "┃ $line"
-            done
+            echo "$output" | awk -v prefix="┃ " '{print prefix $0}'
             echo "┃"
 
             # 检查返回的状态码
@@ -181,4 +176,7 @@ case "$1" in
             fi
         done
     ;;
+    *)
+        echo "Unsupported command '$1'"
+        exit 1
 esac
