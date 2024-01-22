@@ -8,10 +8,7 @@
 #***************************************************************************
 group "default" {
     targets = [
-        "spring-runner-jdk-ubuntu",
-        "spring-runner-jre-ubuntu",
-        "spring-runner-jdk-alpine",
-        "spring-runner-jre-alpine"
+        "spring-runner"
     ]
 }
 
@@ -42,93 +39,63 @@ variable "GOSU_VERSION" {
 }
 
 #***************************************************************************
+# Global Function
+#***************************************************************************
+function "if" {
+    params = [condition, true_return]
+    result =  condition ? true_return : ""
+}
+
+#***************************************************************************
 # Targets
 #***************************************************************************
-target "spring-runner-jdk-ubuntu" {
-    name = "spring-runner-${replace(OPENJDK_VERSION, ".", "-")}-jdk-ubuntu"
+target "spring-runner" {
+    name = "spring-runner-${replace(version.code, ".", "_")}-${type}-${os}"
     matrix = {
-        OPENJDK_VERSION = ["8", "8.0.392", "11", "11.0.21", "17", "17.0.9", "21", "21.0.1"]
+        // 版本
+        version = [{
+            major = "8"
+            code  = "8.0.392"
+        },{
+            major = "11"
+            code  = "11.0.21"
+        }, {
+            major = "17"
+            code  = "17.0.9"
+        }, {
+            major = "21"
+            code  = "21.0.1"
+        }]
+        // jdk 还是 jre
+        type = ["jdk", "jre"]
+        // 基础镜像发行版类型
+        os = ["ubuntu", "alpine"]
     }
     contexts = {
-        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-jdk-ubuntu"
+        image = "docker-image://centralx/openjdk:${version.code}-${type}-${os}"
     }
     inherits = ["_platforms", "_labels"]
-    dockerfile = "Dockerfile-ubuntu"
+    dockerfile = "Dockerfile-${os}"
     labels = {
-        "org.opencontainers.image.version" = "${OPENJDK_VERSION}"
+        "org.opencontainers.image.version" = "${version.code}"
     }
     args = {
         GOSU_VERSION  = "${GOSU_VERSION}"
     }
     tags = [
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}",
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-jdk",
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-ubuntu",
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-jdk-ubuntu",
-    ]
-}
+        // ubuntu 且 jdk 时才有的 tag
+        if(and(equal("ubuntu", os), equal("jdk", type)), "docker.io/centralx/spring-runner:${version.major}"),
+        if(and(equal("ubuntu", os), equal("jdk", type)), "docker.io/centralx/spring-runner:${version.code}"),
 
-target "spring-runner-jre-ubuntu" {
-    name = "spring-runner-${replace(OPENJDK_VERSION, ".", "-")}-jre-ubuntu"
-    matrix = {
-        OPENJDK_VERSION = ["8", "8.0.392", "11", "11.0.21", "17", "17.0.9", "21", "21.0.1"]
-    }
-    contexts = {
-        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-jre-ubuntu"
-    }
-    inherits = ["_platforms", "_labels"]
-    dockerfile = "Dockerfile-ubuntu"
-    labels = {
-        "org.opencontainers.image.version" = "${OPENJDK_VERSION}"
-    }
-    args = {
-        GOSU_VERSION  = "${GOSU_VERSION}"
-    }
-    tags = [
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-jre",
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-jre-ubuntu",
-    ]
-}
+        // jdk 才有的 tag，jre 没有
+        if(equal("jdk", type), "docker.io/centralx/spring-runner:${version.major}-${os}"),
+        if(equal("jdk", type), "docker.io/centralx/spring-runner:${version.code}-${os}"),
 
-target "spring-runner-jdk-alpine" {
-    name = "spring-runner-${replace(OPENJDK_VERSION, ".", "-")}-jdk-alpine"
-    matrix = {
-        OPENJDK_VERSION = ["8", "8.0.392", "11", "11.0.21", "17", "17.0.9", "21", "21.0.1"]
-    }
-    contexts = {
-        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-jdk-alpine"
-    }
-    labels = {
-        "org.opencontainers.image.version" = "${OPENJDK_VERSION}"
-    }
-    inherits = ["_platforms", "_labels"]
-    dockerfile = "Dockerfile-alpine"
-    args = {
-        GOSU_VERSION  = "${GOSU_VERSION}"
-    }
-    tags = [
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-alpine",
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-jdk-alpine",
-    ]
-}
+        // ubuntu 才有的 tag，alpine 没有
+        if(equal("ubuntu", os), "docker.io/centralx/spring-runner:${version.major}-${type}"),
+        if(equal("ubuntu", os), "docker.io/centralx/spring-runner:${version.code}-${type}"),
 
-target "spring-runner-jre-alpine" {
-    name = "spring-runner-${replace(OPENJDK_VERSION, ".", "-")}-jre-alpine"
-    matrix = {
-        OPENJDK_VERSION = ["8", "8.0.392", "11", "11.0.21", "17", "17.0.9", "21", "21.0.1"]
-    }
-    contexts = {
-        image = "docker-image://centralx/openjdk:${OPENJDK_VERSION}-jre-alpine"
-    }
-    labels = {
-        "org.opencontainers.image.version" = "${OPENJDK_VERSION}"
-    }
-    inherits = ["_platforms", "_labels"]
-    dockerfile = "Dockerfile-alpine"
-    args = {
-        GOSU_VERSION  = "${GOSU_VERSION}"
-    }
-    tags = [
-        "docker.io/centralx/spring-runner:${OPENJDK_VERSION}-jre-alpine",
+        "docker.io/centralx/spring-runner:${version.major}-${type}-${os}",
+        "docker.io/centralx/spring-runner:${version.code}-${type}-${os}"
     ]
 }

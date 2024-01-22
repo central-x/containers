@@ -36,4 +36,9 @@ SPRING_OPTS="-Dspring.config.additional-location=optional:./config/"
 #===========================================================================================
 # Run Application
 #===========================================================================================
-exec gosu runner java "$JAVA_OPTS" "$SPRING_OPTS" "$@" -jar "$RUNNER_EXECUTABLE"
+if [ "$1" == "java" ]; then
+    # 运行开发人员指定的程序
+    exec gosu runner "$@"
+else
+    exec gosu runner java "$JAVA_OPTS" "$SPRING_OPTS" "$@" -jar "$RUNNER_EXECUTABLE"
+fi

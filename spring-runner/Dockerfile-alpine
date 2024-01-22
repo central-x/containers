@@ -2,17 +2,14 @@
 # Stage 1
 # 获取构建需要用到的安装包
 ########################################################
-FROM ubuntu:jammy as builder
+FROM centralx/busybox:latest as builder
 ARG TARGETARCH
 ARG GOSU_VERSION
 
 WORKDIR /workspace
 
 # 下载 gosu
-RUN apt-get update;
-RUN apt-get install -y --no-install-recommends ca-certificates wget nano vim;
-RUN wget -O ./gosu "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-${TARGETARCH}";
-
+ADD "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-${TARGETARCH}" ./gosu
 # 添加 entrypoint.sh
 ADD ./entrypoint-alpine.sh ./entrypoint.sh
 
