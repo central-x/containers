@@ -4,4 +4,7 @@
 
 ## 更新日志
 ### 1.0.0
-&emsp;&emsp;发布镜像，预安装以下工具：`wget`、`curl`、`telnet`、`iputils-ping`、`nano`、`vim`。
+&emsp;&emsp;发布镜像，预安装以下工具: `wget`、`curl`、`telnet`、`iputils-ping`、`nano`、`vim`。
+
+### 1.0.1
+&emsp;&emsp;新增预装以下工具: `zip`、`unzip`
