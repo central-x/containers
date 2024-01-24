@@ -3,17 +3,24 @@
 &emsp;&emsp;本镜像主要用于运行基于 Spring Boot 的可执行程序。
 
 ## 版本说明
-### JDK
-* Spring Runner with OpenJDK 8: `8`, `8-jdk`, `8.0.392`, `8.0.392-jdk`, `8-ubuntu`, `8-jdk-ubuntu`, `8.0.392-ubuntu`, `8.0.392-jdk-ubuntu`, `8-alpine`, `8-jdk-alpine`, `8.0.392-alpine`, `8.0.392-jdk-alpine`
-* Spring Runner with OpenJDK 11: `11`, `11-jdk`, `11.0.21`, `11.0.21-jdk`, `11-ubuntu`, `11-jdk-ubuntu`, `11.0.21-ubuntu`, `11.0.21-jdk-ubuntu`, `11-alpine`, `11-jdk-alpine`, `11.0.21-alpine`, `11.0.21-jdk-alpine`
-* Spring Runner with OpenJDK 17: `17`, `17-jdk`, `17.0.9`, `17.0.9-jdk`, `17-ubuntu`, `17-jdk-ubuntu`, `17.0.9-ubuntu`, `17.0.9-jdk-ubuntu`, `17-alpine`, `17-jdk-alpine`, `17.0.9-alpine`, `17.0.9-jdk-alpine`
-* Spring Runner with OpenJDK 21: `21`, `21-jdk`, `21.0.1`, `21.0.1-jdk`, `21-ubuntu`, `21-jdk-ubuntu`, `21.0.1-ubuntu`, `21.0.1-jdk-ubuntu`, `21-alpine`, `21-jdk-alpine`, `21.0.1-alpine`, `21.0.1-jdk-alpine`
+&emsp;&emsp;本镜像的 tag 遵循 `[jdk/jre]${java}[-${os}]` 的命名规则，如：
 
-### JRE
-* Spring Runner with OpenJDK 8(JRE): `8-jre`, `8.0.392-jre`, `8-jre-ubuntu`, `8.0.392-jre-ubuntu`, `8-jre-alpine`, `8.0.392-jre-alpine`
-* Spring Runner with OpenJDK 11(JRE): `11-jre`, `11.0.21-jre`, `11-jre-ubuntu`, `11.0.21-jre-ubuntu`, `11-jre-alpine`, `11.0.21-jre-alpine`
-* Spring Runner with OpenJDK 17(JRE): `17-jre`, `17.0.9-jre`, `17-jre-ubuntu`, `17.0.9-jre-ubuntu`, `17-jre-alpine`, `17.0.9-jre-alpine`
-* Spring Runner with OpenJDK 21(JRE): `21-jre`, `21.0.1-jre`, `21-jre-ubuntu`, `21.0.1-jre-ubuntu`, `21-jre-alpine`, `21.0.1-jre-alpine`
+- `centralx/spring-runner:8`: Spring Runner With OpenJDK 8 in Ubuntu
+- `centralx/spring-runner:jdk11`: Spring Runner With OpenJDK 11 in Ubuntu
+- `centralx/spring-runner:jre17-alpine`: Spring Runner With OpenJRE 17 in Alpine
+
+## 支持的版本号
+&emsp;&emsp;本镜像支持以下 Java 版本号:
+
+- OpenJDK 8: `8`
+- OpenJDK 11: `11`
+- OpenJDK 17: `17`
+- OpenJDK 21: `21`
+
+&emsp;&emsp;本镜像支持以下系统:
+
+- Ubuntu Jammy: `ubuntu`
+- Alpine 3: `alpine`
 
 ## 使用说明
 ### 声明子镜像

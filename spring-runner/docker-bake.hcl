@@ -50,52 +50,32 @@ function "if" {
 # Targets
 #***************************************************************************
 target "spring-runner" {
-    name = "spring-runner-${replace(version.code, ".", "_")}-${type}-${os}"
+    name = "spring-runner-${java}${version}-${os}"
     matrix = {
         // 版本
-        version = [{
-            major = "8"
-            code  = "8.0.392"
-        },{
-            major = "11"
-            code  = "11.0.21"
-        }, {
-            major = "17"
-            code  = "17.0.9"
-        }, {
-            major = "21"
-            code  = "21.0.1"
-        }]
-        // jdk 还是 jre
-        type = ["jdk", "jre"]
+        version = ["8", "11", "17", "21"]
+        // java 类型
+        java = ["jdk", "jre"]
         // 基础镜像发行版类型
         os = ["ubuntu", "alpine"]
     }
     contexts = {
-        image = "docker-image://centralx/openjdk:${version.code}-${type}-${os}"
+        image = "docker-image://centralx/openjdk:${java}${version}-${os}"
     }
     inherits = ["_platforms", "_labels"]
     dockerfile = "Dockerfile-${os}"
     labels = {
-        "org.opencontainers.image.version" = "${version.code}"
+        "org.opencontainers.image.version" = "${version}"
     }
     args = {
         GOSU_VERSION  = "${GOSU_VERSION}"
     }
     tags = [
         // ubuntu 且 jdk 时才有的 tag
-        if(and(equal("ubuntu", os), equal("jdk", type)), "docker.io/centralx/spring-runner:${version.major}"),
-        if(and(equal("ubuntu", os), equal("jdk", type)), "docker.io/centralx/spring-runner:${version.code}"),
-
-        // jdk 才有的 tag，jre 没有
-        if(equal("jdk", type), "docker.io/centralx/spring-runner:${version.major}-${os}"),
-        if(equal("jdk", type), "docker.io/centralx/spring-runner:${version.code}-${os}"),
-
+        if(and(equal("ubuntu", os), equal("jdk", java)), "docker.io/centralx/spring-runner:${version}"),
         // ubuntu 才有的 tag，alpine 没有
-        if(equal("ubuntu", os), "docker.io/centralx/spring-runner:${version.major}-${type}"),
-        if(equal("ubuntu", os), "docker.io/centralx/spring-runner:${version.code}-${type}"),
-
-        "docker.io/centralx/spring-runner:${version.major}-${type}-${os}",
-        "docker.io/centralx/spring-runner:${version.code}-${type}-${os}"
+        if(equal("ubuntu", os), "docker.io/centralx/spring-runner:${java}${version}"),
+        // 通用
+        "docker.io/centralx/spring-runner:${java}${version}-${os}",
     ]
 }

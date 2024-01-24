@@ -11,6 +11,7 @@
 - Install Fonts[[链接](https://hub.docker.com/r/centralx/install-fonts)]: 基于 Resources Installer 封装的字体安装容器，可以向目标容器添加字体相关文件。本镜像常用于 Kubernetes 集群 Pod 的 Init Containers 功能。
 - Wait For[[链接](https://hub.docker.com/r/centralx/waitfor)]: 等待指定条件满足后再启动 Pod。本镜像主要用于 Kubernetes 集群 Pod 的 Init Containers 功能。
 - HBase[[链接](https://hub.docker.com/r/centralx/hbase)]: Apache HBase。
+- Busybox[[链接](https://hub.docker.com/r/centralx/busybox)]: 多阶段构建的基础工具镜像。
 
 ## License
 [MIT License](./LICENSE)

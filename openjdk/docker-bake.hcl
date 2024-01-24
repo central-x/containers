@@ -41,7 +41,7 @@ function "if" {
 # Targets
 #***************************************************************************
 target "openjdk" {
-    name = "openjdk-${replace(version.code, ".", "_")}-${type}-${os.name}"
+    name = "openjdk-${java}${replace(version.code, ".", "_")}-${os.name}"
     matrix = {
         // 版本
         version = [{
@@ -65,7 +65,8 @@ target "openjdk" {
             code = "21.0.1"
             zulu = "21.30.15"
         }]
-        type = ["jdk", "jre"]
+        // java 类型
+        java = ["jdk", "jre"]
         // 基础镜像发行版类型
         os = [{
             // ubuntu
@@ -87,31 +88,27 @@ target "openjdk" {
     inherits = ["_platforms", "_labels"]
     dockerfile = "Dockerfile"
     labels = {
-        "org.opencontainers.image.title" = "openjdk-${type}"
-        "org.opencontainers.image.description" = "Azul Zulu Builds of Open${upper(type)} Packaged by CentralX"
+        "org.opencontainers.image.title" = "open${java}"
+        "org.opencontainers.image.description" = "Azul Zulu Builds of Open${upper(java)} Packaged by CentralX"
         "org.opencontainers.image.distribution" = os.description
         "org.opencontainers.image.version" = version.code
     }
     args = {
         VERSION  = version.code
-        TARGET = "${type}"
-        AMD64_PACKAGE = "https://cdn.azul.com/zulu/bin/zulu${version.zulu}-ca-${type}${version.code}-linux${os.suffix}_x64.tar.gz"
-        ARM64_PACKAGE = "https://cdn.azul.com/zulu/bin/zulu${version.zulu}-ca-${type}${version.code}-linux${os.suffix}_aarch64.tar.gz"
+        TARGET = "${java}"
+        AMD64_PACKAGE = "https://cdn.azul.com/zulu/bin/zulu${version.zulu}-ca-${java}${version.code}-linux${os.suffix}_x64.tar.gz"
+        ARM64_PACKAGE = "https://cdn.azul.com/zulu/bin/zulu${version.zulu}-ca-${java}${version.code}-linux${os.suffix}_aarch64.tar.gz"
     }
     tags = [
         // ubuntu 且 jdk 时才有的 tag
-        if(and(equal("ubuntu", os.name), equal("jdk", type)), "docker.io/centralx/openjdk:${version.major}"),
-        if(and(equal("ubuntu", os.name), equal("jdk", type)), "docker.io/centralx/openjdk:${version.code}"),
-
-        // jdk 才有的 tag，jre 没有
-        if(equal("jdk", type), "docker.io/centralx/openjdk:${version.major}-${os.name}"),
-        if(equal("jdk", type), "docker.io/centralx/openjdk:${version.code}-${os.name}"),
+        if(and(equal("ubuntu", os.name), equal("jdk", java)), "docker.io/centralx/openjdk:${version.major}"),
+        if(and(equal("ubuntu", os.name), equal("jdk", java)), "docker.io/centralx/openjdk:${version.code}"),
 
         // ubuntu 才有的 tag，alpine 没有
-        if(equal("ubuntu", os.name), "docker.io/centralx/openjdk:${version.major}-${type}"),
-        if(equal("ubuntu", os.name), "docker.io/centralx/openjdk:${version.code}-${type}"),
+        if(equal("ubuntu", os.name), "docker.io/centralx/openjdk:${java}${version.major}"),
+        if(equal("ubuntu", os.name), "docker.io/centralx/openjdk:${java}${version.code}"),
 
-        "docker.io/centralx/openjdk:${version.major}-${type}-${os.name}",
-        "docker.io/centralx/openjdk:${version.code}-${type}-${os.name}"
+        "docker.io/centralx/openjdk:${java}${version.major}-${os.name}",
+        "docker.io/centralx/openjdk:${java}${version.code}-${os.name}"
     ]
 }

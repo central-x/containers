@@ -26,9 +26,9 @@ ARG TARGET
 
 COPY --from=builder /workspace/$TARGET /usr/local/$TARGET
 
-ENV JAVA_HOME=/usr/local/$TARGET
 ENV JAVA_VERSION=$VERSION
-ENV PATH=/usr/local/$TARGET/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV JAVA_HOME=/usr/local/$TARGET
+ENV PATH=$JAVA_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENV LANG C.UTF-8
 
 ENTRYPOINT ["java"]

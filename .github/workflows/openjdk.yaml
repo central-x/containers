@@ -47,7 +47,7 @@ jobs:
     strategy:
       matrix:
         version: [8, 11, 17, 21]
-        type: ["jdk", "jre"]
+        java: ["jdk", "jre"]
         os: ["ubuntu", "alpine"]
     steps:
       - name: Login to DockerHub
@@ -57,4 +57,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       #======================== Test OpenJDK =========================
       - name: Test Images
-        run: docker run --rm centralx/openjdk:${{ matrix.version }}-${{ matrix.type }}-${{ matrix.os }}
+        run: docker run --rm centralx/openjdk:${{ matrix.java }}${{ matrix.version }}-${{ matrix.os }}
