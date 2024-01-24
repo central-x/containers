@@ -12,6 +12,7 @@
 - Wait For[[链接](https://hub.docker.com/r/centralx/waitfor)]: 等待指定条件满足后再启动 Pod。本镜像主要用于 Kubernetes 集群 Pod 的 Init Containers 功能。
 - HBase[[链接](https://hub.docker.com/r/centralx/hbase)]: Apache HBase。
 - Busybox[[链接](https://hub.docker.com/r/centralx/busybox)]: 多阶段构建的基础工具镜像。
+- Maven[[链接](https://hub.docker.com/r/centralx/maven)]: Maven With Azul Zulu OpenJDK。
 
 ## License
 [MIT License](./LICENSE)
