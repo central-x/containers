@@ -2,15 +2,16 @@
 ## 概述
 &emsp;&emsp;本镜像主要用于运行基于 Spring Boot 的可执行程序。
 
-## 版本说明
+## 版本号
+### 命名规范
 &emsp;&emsp;本镜像的 tag 遵循 `[jdk/jre]${java}[-${os}]` 的命名规则，如：
 
 - `centralx/spring-runner:8`: Spring Runner With OpenJDK 8 in Ubuntu
 - `centralx/spring-runner:jdk11`: Spring Runner With OpenJDK 11 in Ubuntu
 - `centralx/spring-runner:jre17-alpine`: Spring Runner With OpenJRE 17 in Alpine
 
-## 支持的版本号
-&emsp;&emsp;本镜像支持以下 Java 版本号:
+### 支持的版本号
+&emsp;&emsp;本镜像支持以下 OpenJDK [[链接](https://hub.docker.com/r/centralx/openjdk)]版本号:
 
 - OpenJDK 8: `8`
 - OpenJDK 11: `11`
@@ -21,6 +22,17 @@
 
 - Ubuntu Jammy: `ubuntu`
 - Alpine 3: `alpine`
+
+## 镜像标准
+&emsp;&emsp;本镜像遵守以下构建标准：
+
+- 非 root 容器: 镜像在构建过程中已创建用户 `runner`（uid 1000）和用户组 `runner`（gid 1000），并将使用该用户运行程序。使用非 root 运行程序可以为容器添加一层额外的安全保障；
+- 时区: 镜像支持设置时区，默认为 `Asia/Shanghai`。使用环境变量 `TZ` 修改时区。
+- 工作目录: 镜像默的工作目录为 `/workspace`，工作目录下常设以下目录:
+  - `/workspace/data`: 数据目录
+  - `/workspace/cache`: 缓存/临时目录
+  - `/workspace/config`: 配置目录
+  - `/workspace/logs`: 日志目录
 
 ## 使用说明
 ### 声明子镜像
@@ -49,13 +61,6 @@ $ docker run -p 8080:8080 application:latest
 ```
 
 ##  配置镜像
-### 修改时区
-&emsp;&emsp;本镜像默认时区为 `Asia/Shanghai`，如果开发者需要修改时区，可以通过添加环境变量修改，如下：
-
-```bash
-$ docker run -p 8080:8080 -e TZ=Europe/London application:latest
-```
-
 ### 修改可执行文件名称
 &emsp;&emsp;本镜像默认可执行文件的名称是 `application.jar`，因此开发者在使用本镜像时，应参考使用说明里的 Dockerfile，将复制进来的可执行文件名修改为 `application.jar`。如果需要修改默认的可执行文件名称，可以添加一个 `RUNNER_EXECUTABLE` 环境变量，声明新的可执行文件名称，如下：
 

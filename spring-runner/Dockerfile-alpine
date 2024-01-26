@@ -50,10 +50,11 @@ WORKDIR /workspace
 # 创建数据卷挂载目录
 RUN mkdir /workspace/config && mkdir /workspace/logs && mkdir /workspace/data
 
+# 应用数据目录: /workspace/data
+# 应用缓存目录: /workspace/cache
 # 应用配置目录: /workspace/config
 # 应用日志目录: /workspace/logs
-# 应用数据目录: /workspace/data
-VOLUME ["/workspace/config", "/workspace/logs", "/workspace/data"]
+VOLUME ["/workspace/data", "/workspace/cache", "/workspace/config", "/workspace/logs"]
 
 # 暴露端口
 EXPOSE 80
