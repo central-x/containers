@@ -44,20 +44,20 @@ variable "GOSU_VERSION" {
 #***************************************************************************
 target "android" {
   contexts = {
-    image = "docker-image://centralx/openjdk:jdk11-ubuntu"
+    image = "docker-image://centralx/openjdk:jdk17-ubuntu"
   }
   inherits   = ["_platforms", "_labels"]
   dockerfile = "Dockerfile"
   labels     = {
     "org.opencontainers.image.title"        = "android"
-    "org.opencontainers.image.version"      = "10.0"
+    "org.opencontainers.image.version"      = "11.0"
   }
   args = {
     GOSU_VERSION  = "${GOSU_VERSION}"
-    CMDLINE_PACKAGE = "https://dl.google.com/android/repository/commandlinetools-linux-9862592_latest.zip"
+    CMDLINE_PACKAGE = "https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip"
   }
   tags = [
     "docker.io/centralx/android:latest",
-    "docker.io/centralx/android:10.0"
+    "docker.io/centralx/android:11.0"
   ]
 }
