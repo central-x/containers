@@ -13,7 +13,7 @@ $ docker run centralx/hbase:latest
 ## 镜像标准
 &emsp;&emsp;本镜像遵守以下构建标准：
 
-- 非 root 容器: 镜像在构建过程中已创建用户 runner（uid 1000）和用户组 runner（gid 1000），并将使用该用户运行程序。使用非 root 运行程序可以为容器添加一层额外的安全保障； 
+- 非 root 容器: 镜像在构建过程中已创建用户 `runner`（uid 1000）和用户组 `runner`（gid 1000），并将使用该用户运行程序。使用非 root 运行程序可以为容器添加一层额外的安全保障； 
 - 时区: 镜像支持设置时区，默认为 `Asia/Shanghai`。使用环境变量 `TZ` 修改时区。
 - 工作目录: 镜像默的工作目录为 `/workspace`，工作目录下常设以下目录:
   - `/workspace/data`: 数据目录

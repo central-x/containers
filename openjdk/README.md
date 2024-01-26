@@ -2,15 +2,16 @@
 ## 概述
 &emsp;&emsp;本镜像封装了 Azul Zulu OpenJDK[[链接](https://www.azul.com)]，为 Java 可执行程序提供运行环境。
 
-## 命名规则
+## 版本号
+### 命名规则
 &emsp;&emsp;本镜像的 tag 遵循 `[jdk/jre]${major/version}[-${os}]` 的命名规则，如:
 
 - `centralx/openjdk:8`: OpenJDK 8(JDK) in Ubuntu
-- `centralx/openjdk:jre11.0.21`: OpenJDK 11.0.21(JRE) in Ubuntu
+- `centralx/openjdk:jre11`: OpenJDK 11(JRE) in Ubuntu
 - `centralx/openjdk:jdk17.0.9-alpine`: OpenJDK 17.0.9(JDK) in Alpine
 - `centralx/openjdk:21-ubuntu`: OpenJDK 21(JDK) in Ubuntu
 
-## 支持的版本号
+### 支持的版本号
 &emsp;&emsp;本镜像支持以下 OpenJDK 版本号:
 
 - OpenJDK 8: `8`、`8.0.392`
