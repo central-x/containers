@@ -13,6 +13,8 @@
 - HBase[[链接](https://hub.docker.com/r/centralx/hbase)]: Apache HBase。
 - Busybox[[链接](https://hub.docker.com/r/centralx/busybox)]: 多阶段构建的基础工具镜像。
 - Maven[[链接](https://hub.docker.com/r/centralx/maven)]: Maven With Azul Zulu OpenJDK。
+- Gradle[[链接](https://hub.docker.com/r/centralx/gradle)]: Gradle With Azul Zulu OpenJDK。
+- Clash[[链接](https://hub.docker.com/r/centralx/clash)]: Clash with Dashboard。
 
 ## License
 [MIT License](./LICENSE)
