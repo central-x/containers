@@ -63,7 +63,7 @@ EXPOSE 80
 ENV RUNNER_EXECUTABLE application.jar
 
 # 启动脚本
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
 
 # JVM 调优参数
 # 默认最小内存 256m，最大内存 256m

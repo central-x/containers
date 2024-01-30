@@ -8,4 +8,4 @@ RUN chmod +x /usr/local/bin/*
 WORKDIR /resources
 
 # 启动脚本
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]

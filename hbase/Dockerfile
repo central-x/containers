@@ -79,4 +79,4 @@ VOLUME ["/workspace/init", "/workspace/data", "/workspace/cache"]
 EXPOSE 16010
 
 # 启动脚本
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
