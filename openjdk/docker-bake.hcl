@@ -47,23 +47,23 @@ target "openjdk" {
         version = [{
             // 8
             major = "8"
-            code = "8.0.392"
-            zulu = "8.74.0.17"
+            code = "8.0.402"
+            zulu = "8.76.0.17"
         }, {
             // 11
             major = "11"
-            code = "11.0.21"
-            zulu = "11.68.17"
+            code = "11.0.22"
+            zulu = "11.70.15"
         }, {
             // 17
             major = "17"
-            code = "17.0.9"
-            zulu = "17.46.19"
+            code = "17.0.10"
+            zulu = "17.48.15"
         }, {
             // 21
             major = "21"
-            code = "21.0.1"
-            zulu = "21.30.15"
+            code = "21.0.2"
+            zulu = "21.32.17"
         }]
         // java 类型
         java = ["jdk", "jre"]
