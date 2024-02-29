@@ -27,7 +27,7 @@ target "_labels" {
         "org.opencontainers.image.title" = "resources-installer"
         "org.opencontainers.image.description" = "Install resources"
         "org.opencontainers.image.vendor" = "CentralX"
-        "org.opencontainers.image.maintainer" = "Alan Yeh <alan.yeh.cn>"
+        "org.opencontainers.image.maintainer" = "Alan Yeh <alan@yeh.cn>"
     }
 }
 

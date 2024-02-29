@@ -27,7 +27,7 @@ target "_labels" {
         "org.opencontainers.image.title" = "install-pinpoint-java-agent"
         "org.opencontainers.image.description" = "Install Pinpoint Java Agent"
         "org.opencontainers.image.vendor" = "CentralX"
-        "org.opencontainers.image.maintainer" = "Alan Yeh <alan.yeh.cn>"
+        "org.opencontainers.image.maintainer" = "Alan Yeh <alan@yeh.cn>"
     }
 }
 

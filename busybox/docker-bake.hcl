@@ -27,7 +27,7 @@ target "_labels" {
     "org.opencontainers.image.title" = "busybox"
     "org.opencontainers.image.description" = "Busybox"
     "org.opencontainers.image.vendor" = "CentralX"
-    "org.opencontainers.image.maintainer" = "Alan Yeh <alan.yeh.cn>"
+    "org.opencontainers.image.maintainer" = "Alan Yeh <alan@yeh.cn>"
   }
 }
 

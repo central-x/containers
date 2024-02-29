@@ -6,6 +6,36 @@ name: Release OpenJDK Images
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'OpenJDK Version'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - 'all'
+          - '8'
+          - '11'
+          - '17'
+          - '21'
+      java:
+        description: 'OpenJDK/JRE'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - 'all'
+          - 'jdk'
+          - 'jre'
+      os:
+        description: 'OS for base image'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - 'all'
+          - 'ubuntu'
+          - 'alpine'
 
 jobs:
   #################################################################
@@ -33,6 +63,10 @@ jobs:
       #============================ Build ============================
       - name: Release Images
         uses: docker/bake-action@v4
+        env:
+          ENV_VERSION: ${{ github.event.inputs.version }}
+          ENV_JAVA: ${{ github.event.inputs.java }}
+          ENV_OS: ${{ github.event.inputs.os }}
         with:
           targets: openjdk
           workdir: ./openjdk

@@ -27,7 +27,7 @@ target "_labels" {
     "org.opencontainers.image.title"       = "Nexus Repository Manager"
     "org.opencontainers.image.description" = "The Nexus Repository Manager server with universal support for popular component formats."
     "org.opencontainers.image.vendor"      = "CentralX"
-    "org.opencontainers.image.maintainer"  = "Alan Yeh <alan.yeh.cn>"
+    "org.opencontainers.image.maintainer"  = "Alan Yeh <alan@yeh.cn>"
   }
 }
 

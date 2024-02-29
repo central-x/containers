@@ -27,7 +27,7 @@ target "_labels" {
   labels = {
     "org.opencontainers.image.description" = "Maven Packaged by CentralX"
     "org.opencontainers.image.vendor"      = "CentralX"
-    "org.opencontainers.image.maintainer"  = "Alan Yeh <alan.yeh.cn>"
+    "org.opencontainers.image.maintainer"  = "Alan Yeh <alan@yeh.cn>"
   }
 }
 

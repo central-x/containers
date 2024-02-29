@@ -27,7 +27,7 @@ target "_labels" {
         "org.opencontainers.image.title" = "waitfor"
         "org.opencontainers.image.description" = "Wait for"
         "org.opencontainers.image.vendor" = "CentralX"
-        "org.opencontainers.image.maintainer" = "Alan Yeh <alan.yeh.cn>"
+        "org.opencontainers.image.maintainer" = "Alan Yeh <alan@yeh.cn>"
     }
 }
 

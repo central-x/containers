@@ -27,7 +27,7 @@ target "_labels" {
         "org.opencontainers.image.title" = "spring-runner"
         "org.opencontainers.image.description" = "Spring Application Runner packaged by CentralX"
         "org.opencontainers.image.vendor" = "CentralX"
-        "org.opencontainers.image.maintainer" = "Alan Yeh <alan.yeh.cn>"
+        "org.opencontainers.image.maintainer" = "Alan Yeh <alan@yeh.cn>"
     }
 }
 
