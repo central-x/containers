@@ -25,7 +25,7 @@ FROM image
 
 # 安装时区
 ENV TZ=Asia/Shanghai
-RUN apk add --no-cache tzdata curl busybox-extras
+RUN apk add --no-cache tzdata curl busybox-extras tini
 
 # 复制启动可执行文件要用到的辅助工具
 COPY --from=builder   /workspace/gosu            /usr/local/bin/gosu

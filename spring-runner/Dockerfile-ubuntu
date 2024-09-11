@@ -26,7 +26,7 @@ FROM image
 # 安装时区
 ENV TZ=Asia/Shanghai
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends tzdata ca-certificates curl telnet iputils-ping nano vim && \
+    apt-get install -y --no-install-recommends tzdata ca-certificates curl telnet iputils-ping nano vim tini && \
     rm -rf /var/lib/apt/lists/*
 
 # 复制启动可执行文件要用到的辅助工具
