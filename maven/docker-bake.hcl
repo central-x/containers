@@ -48,7 +48,7 @@ target "maven" {
     maven = [
       {
         major = "3"
-        code  = "3.9.6"
+        code  = "3.9.9"
       }
     ]
     openjdk = ["8", "11", "17", "21"]

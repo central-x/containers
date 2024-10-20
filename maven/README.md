@@ -12,7 +12,7 @@
 ### 支持的版本号
 &emsp;&emsp;本镜像支持以下 Maven 版本号:
 
-- Maven 3: `3`, `3.9.6`
+- Maven 3: `3`, `3.9.9`, `3.9.6`
 
 &emsp;&emsp;本镜像支持以下 OpenJDK [[链接](https://hub.docker.com/r/centralx/openjdk)]版本号:
 
