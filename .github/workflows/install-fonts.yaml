@@ -31,7 +31,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push install-fonts images
-        uses: docker/bake-action@v4
+        uses: docker/bake-action@v5
         with:
           targets: install-fonts
           workdir: ./install-fonts

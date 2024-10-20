@@ -62,7 +62,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       #============================ Build ============================
       - name: Release Images
-        uses: docker/bake-action@v4
+        uses: docker/bake-action@v5
         env:
           ENV_VERSION: ${{ github.event.inputs.version }}
           ENV_JAVA: ${{ github.event.inputs.java }}
