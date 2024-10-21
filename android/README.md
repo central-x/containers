@@ -4,14 +4,15 @@
 
 ## 版本号
 
-| 镜像版本号  | sdkmanager 版本号 | cmdline-tools 文件                           | Java 版本号 | 发布日期       |
-|--------|----------------|--------------------------------------------|----------|------------|
-| latest | 12.0           | commandlinetools-linux-11076708_latest.zip | 17       | 2023/12/07 |
-| 12.0   | 12.0           | commandlinetools-linux-11076708_latest.zip | 17       | 2023/12/07 |
-| 11.0   | 11.0           | commandlinetools-linux-10406996_latest.zip | 17       | 2023/07/27 |
-| 10.0   | 10.0           | commandlinetools-linux-9862592_latest.zip  | 11       | 2023/07/27 |
-| 9.0    | 9.0            | commandlinetools-linux-9477386_latest.zip  | 11       | 2023/01/17 |
-| 8.0    | 8.0            | commandlinetools-linux-9123335_latest.zip  | 8        | 2022/09/30 |
+| 镜像版本号  | tools 版本号 | cmdline-tools 文件                           | Java 版本号 |
+|--------|-----------|--------------------------------------------|----------|
+| latest | 13.0      | commandlinetools-linux-11479570_latest.zip | 17       |
+| 13.0   | 13.0      | commandlinetools-linux-11479570_latest.zip | 17       |
+| 12.0   | 12.0      | commandlinetools-linux-11076708_latest.zip | 17       |
+| 11.0   | 11.0      | commandlinetools-linux-10406996_latest.zip | 17       |
+| 10.0   | 10.0      | commandlinetools-linux-9862592_latest.zip  | 11       |
+| 9.0    | 9.0       | commandlinetools-linux-9477386_latest.zip  | 11       |
+| 8.0    | 8.0       | commandlinetools-linux-9123335_latest.zip  | 8        |
 
 ## 镜像标准
 &emsp;&emsp;本镜像遵守以下构建标准：

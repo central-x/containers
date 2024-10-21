@@ -50,14 +50,14 @@ target "android" {
   dockerfile = "Dockerfile"
   labels     = {
     "org.opencontainers.image.title"        = "android"
-    "org.opencontainers.image.version"      = "12.0"
+    "org.opencontainers.image.version"      = "13.0"
   }
   args = {
     GOSU_VERSION  = "${GOSU_VERSION}"
-    CMDLINE_PACKAGE = "https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip"
+    CMDLINE_PACKAGE = "https://dl.google.com/android/repository/commandlinetools-linux-11479570_latest.zip"
   }
   tags = [
     "docker.io/centralx/android:latest",
-    "docker.io/centralx/android:12.0"
+    "docker.io/centralx/android:13.0"
   ]
 }
