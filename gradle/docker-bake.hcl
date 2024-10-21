@@ -61,7 +61,7 @@ target "gradle" {
       // 8
       if(contains(["all", "8"], "${ENV_VERSION}"), {
         major = "8"
-        code  = "8.9"
+        code  = "8.10"
        })
     ])
     openjdk = ["8", "11", "17", "21"]
