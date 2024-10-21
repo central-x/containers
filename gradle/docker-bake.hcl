@@ -32,11 +32,18 @@ target "_labels" {
 }
 
 #***************************************************************************
+# Global Argument
+#***************************************************************************
+variable "ENV_VERSION" {
+  default = "all"
+}
+
+#***************************************************************************
 # Global Function
 #***************************************************************************
 function "if" {
   params = [condition, true_return]
-  result = condition ? true_return : ""
+  result = condition ? [true_return] : []
 }
 
 #***************************************************************************
@@ -45,18 +52,18 @@ function "if" {
 target "gradle" {
   name   = "gradle-${replace(gradle.code, ".", "_")}-jdk${openjdk}-${os}"
   matrix = {
-    gradle = [
-      {
+    gradle = flatten([
+      // 7
+      if(contains(["all", "7"], "${ENV_VERSION}"), {
         major = "7"
-        // "7.0", "7.0.1", "7.0.2", "7.1", "7.1.1", "7.2", "7.3", "7.3.1", "7.3.2", "7.3.3", "7.4", "7.4.1", "7.4.2", "7.5",
-        // "7.5.1", "7.6", "7.6.1", "7.6.2", "7.6.3",, "7.6.4",
         code  = "7.6.4"
-      }, {
+      }),
+      // 8
+      if(contains(["all", "8"], "${ENV_VERSION}"), {
         major = "8"
-        // "8.0", "8.0.1", "8.0.2", "8.1", "8.1.1", "8.2", "8.2.1", "8.3", "8.4", "8.5", "8.6", `8.7`
-        code  = "8.7"
-      }
-    ]
+        code  = "8.8"
+       })
+    ])
     openjdk = ["8", "11", "17", "21"]
     os = ["ubuntu", "alpine"]
   }
@@ -74,12 +81,12 @@ target "gradle" {
     VERSION        = "${gradle.code}"
     GRADLE_PACKAGE = "https://services.gradle.org/distributions/gradle-${gradle.code}-bin.zip"
   }
-  tags = [
+  tags = flatten([
     // ubuntu 才有的 tag，alpine 没有
     if(equal("ubuntu", os), "docker.io/centralx/gradle:${gradle.major}-jdk${openjdk}"),
     if(equal("ubuntu", os), "docker.io/centralx/gradle:${gradle.code}-jdk${openjdk}"),
 
     "docker.io/centralx/gradle:${gradle.major}-jdk${openjdk}-${os}",
     "docker.io/centralx/gradle:${gradle.code}-jdk${openjdk}-${os}",
-  ]
+  ])
 }

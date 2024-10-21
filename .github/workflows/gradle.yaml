@@ -7,6 +7,16 @@ name: Release Gradle Images
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Gradle Version'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - 'all'
+          - '7'
+          - '8'
 
 jobs:
   #################################################################
@@ -34,6 +44,8 @@ jobs:
       #============================ Build ============================
       - name: Release Images
         uses: docker/bake-action@v5
+        env:
+          ENV_VERSION: ${{ github.event.inputs.version }}
         with:
           targets: gradle
           workdir: ./gradle
