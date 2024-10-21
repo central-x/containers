@@ -6,7 +6,8 @@
 
 | 镜像版本号  | tools 版本号 | cmdline-tools 文件                           | Java 版本号 |
 |--------|-----------|--------------------------------------------|----------|
-| latest | 13.0      | commandlinetools-linux-11479570_latest.zip | 17       |
+| latest | 16.0      | commandlinetools-linux-12266719_latest.zip | 17       |
+| 16.0   | 16.0      | commandlinetools-linux-12266719_latest.zip | 17       |
 | 13.0   | 13.0      | commandlinetools-linux-11479570_latest.zip | 17       |
 | 12.0   | 12.0      | commandlinetools-linux-11076708_latest.zip | 17       |
 | 11.0   | 11.0      | commandlinetools-linux-10406996_latest.zip | 17       |
