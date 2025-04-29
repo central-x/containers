@@ -63,26 +63,26 @@ target "openjdk" {
       // 8
       if(contains(["all", "8"], "${ENV_VERSION}"), {
         major = "8"
-        code  = "8.0.432"
-        zulu  = "8.82.0.21"
+        code  = "8.0.442"
+        zulu  = "8.84.0.15"
       }),
       // 11
       if(contains(["all", "11"], "${ENV_VERSION}"), {
         major = "11"
-        code  = "11.0.25"
-        zulu  = "11.76.21"
+        code  = "11.0.26"
+        zulu  = "11.78.15"
       }),
       // 17
       if(contains(["all", "17"], "${ENV_VERSION}"), {
         major = "17"
-        code  = "17.0.13"
-        zulu  = "17.54.21"
+        code  = "17.0.14"
+        zulu  = "17.56.15"
       }),
       // 21
       if(contains(["all", "21"], "{$ENV_VERSION}"), {
         major = "21"
-        code  = "21.0.5"
-        zulu  = "21.38.21"
+        code  = "21.0.6"
+        zulu  = "21.40.17"
       })
     ])
     // java 类型
