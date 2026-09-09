@@ -1,6 +1,10 @@
 # Android
+
 ## 概述
-&emsp;&emsp;本镜像提供了 Android [[链接](https://developer.android.com)]的编译环境。本镜像主要封装了 Android SDK 命令行工具（`cmdline-tools`）[[链接](https://developer.android.com/tools/releases/cmdline-tools?hl=zh-cn)]，该工具可以用它来查看、安装、更新和卸载 Android SDK 的软件包，并可以在编译项目时自动下载所需的编译工具。
+
+&emsp;&emsp;本镜像提供了 Android [[链接](https://developer.android.com)]的编译环境。本镜像主要封装了 Android SDK 命令行工具（
+`cmdline-tools`）[[链接](https://developer.android.com/tools/releases/cmdline-tools?hl=zh-cn)]，该工具可以用它来查看、安装、更新和卸载
+Android SDK 的软件包，并可以在编译项目时自动下载所需的编译工具。
 
 ## 版本号
 
@@ -15,16 +19,24 @@
 | 9.0    | 9.0       | commandlinetools-linux-9477386_latest.zip  | 11       |
 | 8.0    | 8.0       | commandlinetools-linux-9123335_latest.zip  | 8        |
 
+| 应用    | 用户名/密码                | 表空间                    |
+|-------|-----------------------|------------------------|
+| Nacos | `nacos/nacos.Md.1qaz` | nacos（初始 128mb，最大 10G） |
+| 魔方平台  | `mcube/mcube.Md.1qaz` | mcube（初始 1G，最大 512G）   |
+
 ## 镜像标准
+
 &emsp;&emsp;本镜像遵守以下构建标准：
 
-- 非 root 容器: 镜像在构建过程中已创建用户 `runner`（uid 1000）和用户组 `runner`（gid 1000），并将使用该用户运行程序。使用非 root 运行程序可以为容器添加一层额外的安全保障；
+- 非 root 容器: 镜像在构建过程中已创建用户 `runner`（uid 1000）和用户组 `runner`（gid 1000），并将使用该用户运行程序。使用非
+  root 运行程序可以为容器添加一层额外的安全保障；
 - 时区: 镜像支持设置时区，默认为 `Asia/Shanghai`。使用环境变量 `TZ` 修改时区。
 - 工作目录: 镜像默的工作目录为 `/workspace`。
 
 ## 使用
-&emsp;&emsp;将项目目录挂载到镜像的 `/workspace` 目录。注意，项目下面的 `local.properties` 的 `sdk.dir` 属性值需修改为 `/usr/local/android`。
 
+&emsp;&emsp;将项目目录挂载到镜像的 `/workspace` 目录。注意，项目下面的 `local.properties` 的 `sdk.dir` 属性值需修改为
+`/usr/local/android`。
 
 ```bash
 # 在 /workspace 目录下执行 ./gradlew assembleRelease 命令
