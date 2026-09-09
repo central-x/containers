@@ -79,7 +79,7 @@ target "openjdk" {
         zulu  = "17.68.203"
       }),
       // 21
-      if(contains(["all", "21"], "{$ENV_VERSION}"), {
+      if(contains(["all", "21"], "${ENV_VERSION}"), {
         major = "21"
         code  = "21.0.12.1"
         zulu  = "21.52.203"
