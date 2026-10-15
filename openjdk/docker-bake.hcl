@@ -95,8 +95,8 @@ target "openjdk" {
       // ubuntu
       if(contains(["all", "ubuntu"], "${ENV_OS}"), {
         name        = "ubuntu"
-        image       = "docker-image://ubuntu:jammy"
-        description = "Ubuntu Jammy"
+        image       = "docker-image://ubuntu:resolute"
+        description = "Ubuntu Resolute"
         suffix      = ""
       }),
       // alpine

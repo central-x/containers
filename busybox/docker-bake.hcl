@@ -43,7 +43,7 @@ variable "IMAGE_VERSION" {
 #***************************************************************************
 target "busybox" {
   contexts = {
-    image = "docker-image://ubuntu:jammy"
+    image = "docker-image://ubuntu:resolute"
   }
   inherits = ["_platforms", "_labels"]
   dockerfile = "Dockerfile"

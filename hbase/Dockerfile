@@ -2,7 +2,7 @@
 # Stage 1
 # 获取构建需要用到的安装包
 ########################################################
-FROM ubuntu:jammy as builder
+FROM ubuntu:resolute as builder
 
 ARG TARGETARCH
 ARG IMAGE_VERSION

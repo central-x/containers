@@ -47,7 +47,7 @@ variable "GOSU_VERSION" {
 #***************************************************************************
 target "clash" {
   contexts = {
-    image = "docker-image://ubuntu:jammy"
+    image = "docker-image://ubuntu:resolute"
   }
   inherits = ["_platforms", "_labels"]
   dockerfile = "Dockerfile"
