@@ -43,7 +43,7 @@ RUN chmod +x /usr/local/bin/*
 # -m, --create-home: 创建用户主目录，默认是 /home/<user>
 # -g: 指定用户所属组
 # -u: 指定用户 UID
-RUN groupadd -r -g 1000 runner && useradd -r -m -g runner -u 1000 runner
+RUN groupadd -r -g 9527 runner && useradd -r -m -g runner -u 9527 runner
 
 # 工作目录
 WORKDIR /workspace

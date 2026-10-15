@@ -42,8 +42,8 @@ RUN chmod +x /usr/local/bin/*
 # -G: 指定用户所属组
 # -u: 指定用户 UID
 RUN set -eux; \
-    addgroup -S -g 1000 runner; \
-    adduser -S -h /home/runner -G runner -u 1000 runner
+    addgroup -S -g 9527 runner; \
+    adduser -S -h /home/runner -G runner -u 9527 runner
 
 # 工作目录
 WORKDIR /workspace
